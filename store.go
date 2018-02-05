@@ -2,6 +2,7 @@ package tago
 
 import (
 	"fmt"
+
 	"github.com/boltdb/bolt"
 	"github.com/zhuharev/intarr"
 )
@@ -90,8 +91,8 @@ func removeTag(tx *bolt.Tx, tagName string, objPrefix []byte, objId int64) error
 	}
 
 	sl := intarr.New(arr)
-	if sl.In(int32(objId)) {
-		sl = sl.Remove(int32(objId))
+	if sl.In(uint64(objId)) {
+		sl = sl.Remove(uint64(objId))
 	}
 
 	bts, e := sl.Encode()
